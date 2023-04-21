@@ -1,0 +1,21 @@
+package QLCB;
+import java.sql.*;
+
+public class ICanbo {
+	private String DB_URL = "jdbc:mysql://localhost:3306/qlcb";
+	private String DB_USERNAME = "root";
+	private String DB_PASSWORD = "";
+	
+	public Connection getCon() {
+		Connection _conn = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			_conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+			System.out.print("Connect success");
+		}
+		catch (Exception ex) {
+			System.out.print("Connect error " + ex.getMessage());
+		}
+		return _conn;
+	}
+}

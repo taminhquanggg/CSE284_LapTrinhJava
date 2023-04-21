@@ -1,0 +1,121 @@
+package Exam;
+
+import java.awt.EventQueue;
+import java.sql.*;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.JButton;
+
+public class GUI extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField radius;
+	private JTextField height;
+	private JTextField area;
+	private JTextField volumn;
+	private JTable table;
+	private Connection con = null;
+	private String DB_URL = "jdbc:mysql://localhost:3306/taminhquang_db";
+	private String DB_USERNAME = "root";
+	private String DB_PASSWORD = "";
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GUI frame = new GUI();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public GUI() {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			con = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+			System.out.print("Connect success!");
+		}
+		catch (Exception ex) {
+			System.out.print("Connect error!" + ex.getMessage());
+		}
+		
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 526, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		radius = new JTextField();
+		radius.setBounds(54, 11, 86, 20);
+		contentPane.add(radius);
+		radius.setColumns(10);
+		
+		height = new JTextField();
+		height.setBounds(54, 42, 86, 20);
+		contentPane.add(height);
+		height.setColumns(10);
+		
+		area = new JTextField();
+		area.setBounds(54, 73, 86, 20);
+		contentPane.add(area);
+		area.setColumns(10);
+		
+		volumn = new JTextField();
+		volumn.setBounds(54, 104, 86, 20);
+		contentPane.add(volumn);
+		volumn.setColumns(10);
+		
+		JComboBox color = new JComboBox();
+		color.setBounds(54, 141, 86, 20);
+		contentPane.add(color);
+		
+		JLabel lbToString = new JLabel("");
+		lbToString.setBounds(10, 172, 130, 52);
+		contentPane.add(lbToString);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(165, 11, 335, 239);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"radius", "color", "height"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Double.class, String.class, Double.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		
+		JButton btnDel = new JButton("Xóa");
+		btnDel.setBounds(51, 227, 89, 23);
+		contentPane.add(btnDel);
+	}
+}

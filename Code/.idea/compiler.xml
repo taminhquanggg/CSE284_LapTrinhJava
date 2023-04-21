@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="TheMyPoint" />
+        <module name="lab10" />
+        <module name="project01" />
+        <module name="TheMyComplex" />
+        <module name="ShapeMainPJ" />
+        <module name="circle" />
+        <module name="DemoGUI" />
+        <module name="mavenproject1" />
+        <module name="DateTime" />
+        <module name="AuthorAndBookSln" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="AuthorAndBookSln" target="18" />
+      <module name="circle" target="18" />
+      <module name="DateTime" target="18" />
+      <module name="DemoGUI" target="18" />
+      <module name="lab10" target="18" />
+      <module name="mavenproject1" target="18" />
+      <module name="project01" target="18" />
+      <module name="ShapeMainPJ" target="18" />
+      <module name="TheMyComplex" target="18" />
+      <module name="TheMyPoint" target="18" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

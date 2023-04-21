@@ -1,0 +1,21 @@
+package GSach;
+import java.sql.*;
+
+public class XLSach {
+	private static String DB_URL = "jdbc:mysql://localhost:3306/dlsach";
+	private static String USERNAME = "root";
+	private static String PASSWORD = "";
+	
+	public static Connection getConn() {
+		Connection _conn = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			_conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+			System.out.print("Connect success!");
+		}
+		catch (Exception ex) {
+			System.out.print("Connect error " + ex.getMessage());
+		}
+		return _conn;
+	}
+}

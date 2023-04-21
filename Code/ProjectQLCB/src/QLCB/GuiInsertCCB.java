@@ -1,0 +1,206 @@
+package QLCB;
+
+import java.awt.EventQueue;
+import java.awt.HeadlessException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+
+import com.mysql.cj.jdbc.result.ResultSetMetaData;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
+public class GuiInsertCCB extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtSTK;
+	private JTextField txtHoten;
+	private JTextField txtDiachi;
+	private JTextField txtLuong;
+	private JTable tableCanbo;
+
+	/**
+	 * Launch the application.
+	 * @throws Exception 
+	 */
+	public static void main(String[] args) throws Exception {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GuiInsertCCB frame = new GuiInsertCCB();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	void loadData() {
+		try	{
+			QLCB _qlcb = new QLCB();
+			ResultSet rs = _qlcb.getCanbo();
+			ResultSetMetaData stData = (ResultSetMetaData) rs.getMetaData();
+			int count = stData.getColumnCount();
+			
+			DefaultTableModel RecordTabel = (DefaultTableModel) tableCanbo.getModel();
+			RecordTabel.setRowCount(0);
+			
+			while (rs.next()) {
+				Vector dataList = new Vector();
+				Canbo _canbo = new Canbo(rs.getString("SoTK"),
+						rs.getString("Hoten"),
+						rs.getString("GT"),
+						rs.getString("Diachi"),
+						rs.getInt("Luong"));
+				for (int i=1; i<=count; i++) {
+					dataList.add(_canbo.getSoTK());
+					dataList.add(_canbo.getHoten());
+					dataList.add(_canbo.getGT());
+					dataList.add(_canbo.getDiachi());
+					dataList.add(_canbo.getLuong());
+				}
+				RecordTabel.addRow(dataList);
+			}
+		}
+		catch (Exception ex) {
+			JOptionPane.showMessageDialog(null,"Lỗi " + ex.getMessage());
+		}
+	}
+	
+
+	public GuiInsertCCB() throws SQLException {
+		QLCB _qlcb = new QLCB();
+		
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentShown(ComponentEvent e) {
+				loadData();
+			}
+		});
+		
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 772, 214);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Số tài khoản:");
+		lblNewLabel.setBounds(10, 11, 82, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Họ tên: ");
+		lblNewLabel_1.setBounds(10, 36, 70, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Giới tính:");
+		lblNewLabel_2.setBounds(10, 61, 70, 14);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Địa chỉ:");
+		lblNewLabel_3.setBounds(10, 86, 70, 14);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Lương: ");
+		lblNewLabel_4.setBounds(10, 111, 70, 14);
+		contentPane.add(lblNewLabel_4);
+		
+		txtSTK = new JTextField();
+		txtSTK.setBounds(96, 8, 108, 20);
+		contentPane.add(txtSTK);
+		txtSTK.setColumns(10);
+		
+		txtHoten = new JTextField();
+		txtHoten.setBounds(85, 33, 140, 20);
+		contentPane.add(txtHoten);
+		txtHoten.setColumns(10);
+		
+		JComboBox cbGT = new JComboBox();
+		cbGT.setModel(new DefaultComboBoxModel(new String[] {"Nam", "Nữ"}));
+		cbGT.setBounds(95, 57, 130, 22);
+		contentPane.add(cbGT);
+		
+		txtDiachi = new JTextField();
+		txtDiachi.setBounds(86, 83, 139, 20);
+		contentPane.add(txtDiachi);
+		txtDiachi.setColumns(10);
+		
+		txtLuong = new JTextField();
+		txtLuong.setBounds(85, 108, 140, 20);
+		contentPane.add(txtLuong);
+		txtLuong.setColumns(10);
+		
+		JButton btnThem = new JButton("Thêm");
+		btnThem.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int _luong = Integer.parseInt(txtLuong.getText());
+				Canbo _canbo = new Canbo(txtSTK.getText(), 
+						txtHoten.getText(), 
+						cbGT.getSelectedItem().toString(), 
+						txtDiachi.getText(),
+						_luong);
+				try {
+					if (_qlcb.insertCB(_qlcb.getCon(), _canbo)) {
+						JOptionPane.showMessageDialog(null, "Thêm dữ liệu thành công");
+						txtSTK.setText("");
+						txtHoten.setText("");
+						txtDiachi.setText("");
+						txtLuong.setText("");
+						loadData();
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Thêm dữ liệu không thành công");
+						loadData();
+					}
+				} catch (HeadlessException | SQLException e1) {
+					JOptionPane.showMessageDialog(null, "Lỗi: " + e1.getMessage());
+					loadData();
+				}
+			}
+		});
+		btnThem.setBounds(78, 139, 89, 23);
+		contentPane.add(btnThem);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(259, 11, 487, 153);
+		contentPane.add(scrollPane);
+		
+		tableCanbo = new JTable();
+		tableCanbo.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"S\u1ED1 t\u00E0i kho\u1EA3n", "H\u1ECD t\u00EAn", "Gi\u1EDBi t\u00EDnh", "\u0110\u1ECBa ch\u1EC9", "L\u01B0\u01A1ng"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class, Integer.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		scrollPane.setViewportView(tableCanbo);
+	}
+}

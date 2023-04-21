@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AuthorAndBookSln/AuthorAndBookSln.iml" filepath="$PROJECT_DIR$/AuthorAndBookSln/AuthorAndBookSln.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DateTime/DateTime.iml" filepath="$PROJECT_DIR$/DateTime/DateTime.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DemoGUI/DemoGUI.iml" filepath="$PROJECT_DIR$/DemoGUI/DemoGUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java.iml" filepath="$PROJECT_DIR$/.idea/Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShapeMainPJ/ShapeMainPJ.iml" filepath="$PROJECT_DIR$/ShapeMainPJ/ShapeMainPJ.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TheMyComplex/TheMyComplex.iml" filepath="$PROJECT_DIR$/TheMyComplex/TheMyComplex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TheMyPoint/TheMyPoint.iml" filepath="$PROJECT_DIR$/TheMyPoint/TheMyPoint.iml" />
+      <module fileurl="file://$PROJECT_DIR$/circle/circle.iml" filepath="$PROJECT_DIR$/circle/circle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lab10/lab10.iml" filepath="$PROJECT_DIR$/lab10/lab10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mavenproject1/mavenproject1.iml" filepath="$PROJECT_DIR$/mavenproject1/mavenproject1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project01/project01.iml" filepath="$PROJECT_DIR$/project01/project01.iml" />
+    </modules>
+  </component>
+</project>

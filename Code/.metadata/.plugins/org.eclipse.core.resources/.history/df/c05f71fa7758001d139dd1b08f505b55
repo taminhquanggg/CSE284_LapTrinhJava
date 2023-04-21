@@ -1,0 +1,38 @@
+package QLCB;
+
+import java.sql.*;
+
+public class QLCB implements ICanbo{
+	private String DB_URL = "jdbc:mysql://localhost:3306/qlcb";
+	private String DB_USERNAME = "root";
+	private String DB_PASSWORD = "";
+	private Connection cn;
+
+	public QLCB() {
+		cn = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			cn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+			System.out.println("Connect success");
+		}
+		catch (Exception ex) {
+			System.out.println("Connect error " + ex.getMessage());
+		}
+	}
+
+	public Connection getCon() {
+		return cn;
+	}
+	
+	public boolean insertCB(Connection _conn, Canbo _canbo) throws SQLException {
+		Statement stmt = _conn.createStatement();
+		int q = stmt.executeUpdate("INSERT INTO `tbcanbo`(`SoTK`, `Hoten`, `GT`, `Diachi`, `Luong`) "
+				+ "VALUES ('" + _canbo.getSoTK() + "','" + _canbo.getHoten() + "','" + _canbo.getGT() + "','" + _canbo.getDiachi() + "'," + _canbo.getLuong() + ")");
+		if (q>0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+}

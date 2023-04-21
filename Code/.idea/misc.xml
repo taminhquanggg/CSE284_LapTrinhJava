@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/lab10/pom.xml" />
+        <option value="$PROJECT_DIR$/circle/pom.xml" />
+        <option value="$PROJECT_DIR$/DemoGUI/pom.xml" />
+        <option value="$PROJECT_DIR$/DateTime/pom.xml" />
+        <option value="$PROJECT_DIR$/project01/pom.xml" />
+        <option value="$PROJECT_DIR$/TheMyPoint/pom.xml" />
+        <option value="$PROJECT_DIR$/ShapeMainPJ/pom.xml" />
+        <option value="$PROJECT_DIR$/TheMyComplex/pom.xml" />
+        <option value="$PROJECT_DIR$/mavenproject1/pom.xml" />
+        <option value="$PROJECT_DIR$/AuthorAndBookSln/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="18" project-jdk-type="JavaSDK" />
+</project>

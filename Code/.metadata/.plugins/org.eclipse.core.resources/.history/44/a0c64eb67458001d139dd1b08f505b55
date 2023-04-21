@@ -1,0 +1,108 @@
+package QLCB;
+
+import java.awt.EventQueue;
+import java.sql.Connection;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.DefaultComboBoxModel;
+
+public class GuiInsertCCB extends JFrame {
+
+	private JPanel contentPane;
+	private JTextField txtSTK;
+	private JTextField txtHoten;
+	private JTextField txtDiachi;
+	private JTextField txtLuong;
+	private JTable table;
+	
+
+	/**
+	 * Launch the application.
+	 * @throws Exception 
+	 */
+	public static void main(String[] args) throws Exception {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GuiInsertCCB frame = new GuiInsertCCB();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public GuiInsertCCB() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 545, 214);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Số tài khoản:");
+		lblNewLabel.setBounds(10, 11, 70, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Họ tên: ");
+		lblNewLabel_1.setBounds(10, 36, 46, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Giới tính:");
+		lblNewLabel_2.setBounds(10, 61, 46, 14);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Địa chỉ:");
+		lblNewLabel_3.setBounds(10, 86, 46, 14);
+		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Lương: ");
+		lblNewLabel_4.setBounds(10, 111, 46, 14);
+		contentPane.add(lblNewLabel_4);
+		
+		txtSTK = new JTextField();
+		txtSTK.setBounds(85, 8, 108, 20);
+		contentPane.add(txtSTK);
+		txtSTK.setColumns(10);
+		
+		txtHoten = new JTextField();
+		txtHoten.setBounds(53, 33, 140, 20);
+		contentPane.add(txtHoten);
+		txtHoten.setColumns(10);
+		
+		JComboBox cbGT = new JComboBox();
+		cbGT.setModel(new DefaultComboBoxModel(new String[] {"Nam", "Nữ"}));
+		cbGT.setBounds(63, 57, 130, 22);
+		contentPane.add(cbGT);
+		
+		txtDiachi = new JTextField();
+		txtDiachi.setBounds(54, 83, 139, 20);
+		contentPane.add(txtDiachi);
+		txtDiachi.setColumns(10);
+		
+		txtLuong = new JTextField();
+		txtLuong.setBounds(53, 108, 140, 20);
+		contentPane.add(txtLuong);
+		txtLuong.setColumns(10);
+		
+		JButton btnThem = new JButton("Thêm");
+		btnThem.setBounds(63, 139, 89, 23);
+		contentPane.add(btnThem);
+		
+		table = new JTable();
+		table.setBounds(226, 11, 260, 153);
+		contentPane.add(table);
+	}
+}
